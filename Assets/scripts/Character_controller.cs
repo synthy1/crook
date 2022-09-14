@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class movement_script : MonoBehaviour
+public class Character_controller : MonoBehaviour
 {
     Rigidbody2D layerobject;
 
-    public float stamina = 100f;
+    private float stamina = 100f;
     public float MaxStamina = 100.0f;
-    public float speed = 10f;
+    private float speed = 10f;
     public float basespeed = 10f;
     public float sprspeed = 20f;
     public float jmpforce = 100f;
@@ -19,6 +19,7 @@ public class movement_script : MonoBehaviour
     bool isJumping = false;
     bool isgrounded = false;
     bool issliding = false;
+    public Stambar stambar;
     
     private const float StaminaDecreasePerFrame = 50.0f;
     private const float StaminaIncreasePerFrame = 30.0f;
@@ -30,7 +31,8 @@ public class movement_script : MonoBehaviour
     {
         layerobject = GetComponent<Rigidbody2D>();
 
-       
+        stambar.setmaxstam(MaxStamina);
+        speed = basespeed;
     }
 
     // Update is called once per frame
@@ -39,11 +41,11 @@ public class movement_script : MonoBehaviour
         float movmentValueX = Input.GetAxis("Horizontal") * speed;
 
         layerobject.velocity = new Vector2(movmentValueX, layerobject.velocity.y);
-        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.1f, whatisground);
+        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.01f, whatisground);
 
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded == true)
         {
-            layerobject.AddForce(new Vector2(0f, jumpf));
+            layerobject.AddForce(new Vector2(0f, jmpforce));
         }
 
         bool issprint = Input.GetKey(KeyCode.LeftShift);
@@ -66,7 +68,9 @@ public class movement_script : MonoBehaviour
         {
             speed = basespeed;
         }
-        Debug.Log(stamina);
+        stambar.setstam(stamina);
+
+
     }
 
 
