@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class movement_script : MonoBehaviour
@@ -7,6 +8,7 @@ public class movement_script : MonoBehaviour
     Rigidbody2D layerobject;
 
     public float stamina = 100f;
+    public float MaxStamina = 100.0f;
     public float speed = 10f;
     public float basespeed = 10f;
     public float sprspeed = 20f;
@@ -17,7 +19,12 @@ public class movement_script : MonoBehaviour
     bool isJumping = false;
     bool isgrounded = false;
     bool issliding = false;
-    bool issprint = false;
+    
+    private const float StaminaDecreasePerFrame = 50.0f;
+    private const float StaminaIncreasePerFrame = 30.0f;
+    private const float StaminaTimeToRegen = 3.0f;
+    private float StaminaRegenTimer = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,37 +46,28 @@ public class movement_script : MonoBehaviour
             layerobject.AddForce(new Vector2(0f, jumpf));
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && stamina < 0f)
-        {
-            issprint = true;
-            
-        }
+        bool issprint = Input.GetKey(KeyCode.LeftShift);
 
-        if (Input.GetKeyUp(KeyCode.LeftShift) || stamina >= 0f)
+        if (issprint)
         {
-            issprint = false;
-            
-        }
-
-        if (issprint == true)
-        {
+            stamina = Mathf.Clamp(stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+            StaminaRegenTimer = 0.0f;
             speed = sprspeed;
-            
         }
-        else if (issprint == false)
+        else if (stamina < MaxStamina)
         {
             speed = basespeed;
-            
+            if (StaminaRegenTimer >= StaminaTimeToRegen)
+                stamina = Mathf.Clamp(stamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+            else
+                StaminaRegenTimer += Time.deltaTime;
         }
-        while (issprint == true)
+        if (stamina == 0f)
         {
-            stamina = stamina - 1f;
-        }
-
-        while (issprint == false)
-        {
-            stamina = stamina + 1f;
+            speed = basespeed;
         }
         Debug.Log(stamina);
     }
+
+
 }

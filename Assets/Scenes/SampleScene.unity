@@ -199,12 +199,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.9602736, y: 0.22840998, z: -13.154432}
+  m_LocalScale: {x: 1.3154433, y: 0.67179406, z: 1.3154433}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1541445020}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858693873
 GameObject:
@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: 11.249783, y: 0.61646664, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120801894
 GameObject:
@@ -383,7 +383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaffb9ae8abb2b743a3370e7b542a923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2000
+  stamina: 100
+  MaxStamina: 100
+  speed: 10
+  basespeed: 10
+  sprspeed: 20
+  jmpforce: 100
   groundchecker: {fileID: 1120801894}
   whatisground:
     serializedVersion: 2
@@ -433,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7105077580317904229, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7105077580317904229, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
       propertyPath: m_LocalPosition.x
