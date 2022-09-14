@@ -6,6 +6,7 @@ using UnityEngine;
 public class Character_controller : MonoBehaviour
 {
     Rigidbody2D layerobject;
+    public GameObject character;
 
     private float stamina = 100f;
     public float MaxStamina = 100.0f;
@@ -13,12 +14,14 @@ public class Character_controller : MonoBehaviour
     public float basespeed = 10f;
     public float sprspeed = 20f;
     public float jmpforce = 100f;
+    float targetAngle = 180;
+    float turnSpeed = 10;
     public GameObject groundchecker;
     public LayerMask whatisground;
-    public float jumpf = 100f;
     bool isJumping = false;
     bool isgrounded = false;
     bool issliding = false;
+    bool runagain = false;
     public Stambar stambar;
     
     private const float StaminaDecreasePerFrame = 50.0f;
@@ -30,9 +33,10 @@ public class Character_controller : MonoBehaviour
     void Start()
     {
         layerobject = GetComponent<Rigidbody2D>();
-
+        float startrot = character.transform.localRotation.z;
         stambar.setmaxstam(MaxStamina);
         speed = basespeed;
+        
     }
 
     // Update is called once per frame
@@ -70,6 +74,19 @@ public class Character_controller : MonoBehaviour
         }
         stambar.setstam(stamina);
 
+        
+        
+        if (Input.GetKey(KeyCode.S) && isgrounded == false)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetAngle), turnSpeed * Time.deltaTime);
+            
+        
+            
+            
+        }
+        
+        
+        
 
     }
 
