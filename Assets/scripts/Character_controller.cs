@@ -14,15 +14,18 @@ public class Character_controller : MonoBehaviour
     public float basespeed = 10f;
     public float sprspeed = 20f;
     public float jmpforce = 100f;
-    float targetAngle = 180;
-    float turnSpeed = 10;
+    float turnSpeed = 500;
     public GameObject groundchecker;
+    public BoxCollider2D hurtbox;
     public LayerMask whatisground;
     bool isJumping = false;
     bool isgrounded = false;
     bool issliding = false;
     bool runagain = false;
+    bool isrot = false;
+    public bool dead = false;
     public Stambar stambar;
+    
     
     private const float StaminaDecreasePerFrame = 50.0f;
     private const float StaminaIncreasePerFrame = 30.0f;
@@ -76,19 +79,30 @@ public class Character_controller : MonoBehaviour
 
         
         
-        if (Input.GetKey(KeyCode.S) && isgrounded == false)
+        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, targetAngle), turnSpeed * Time.deltaTime);
+            isrot = true;
             
-        
+
+
+
+
+        }
+        if (isrot && dead == false)
+        {
             
-            
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 1f), turnSpeed * Time.deltaTime);
+            if (transform.rotation.eulerAngles.z >= 359f && dead == false)
+            {
+                isrot = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
         
-        
+
         
 
     }
 
-
+ 
 }
