@@ -16,7 +16,7 @@ public class Character_controller : MonoBehaviour
     public float jmpforce = 100f;
     float turnSpeed = 500;
     float targetTime = 0f;
-    float slidingTime = 5f;// how long can player slide
+    float slidingTime = 1f;// how long can player slide
     public GameObject groundchecker;
     public GameObject headchecker;
     public GameObject sidechecker_1;
@@ -25,19 +25,19 @@ public class Character_controller : MonoBehaviour
     bool isJumping = false;
     bool isgrounded = false;
     bool issliding = false;
-    bool runagain = false;
     bool isrot = false;
     bool isonhead = false;
     bool isonside = false;
+    bool doublejump = false;
     public bool dead = false;
     public Stambar stambar;
     Vector3 basesize;
     Vector3 slidesize;
-
-
+    public Vector2 slidingSpeed = new Vector2(500f, 0);
+    public Vector2 DJ_Hight = new Vector2(0f, 0.1f);
     private const float StaminaDecreasePerFrame = 50.0f;
-    private const float StaminaIncreasePerFrame = 30.0f;
-    private const float StaminaTimeToRegen = 3.0f;
+    private const float StaminaIncreasePerFrame = 50.0f;
+    private const float StaminaTimeToRegen = 2.0f;
     private float StaminaRegenTimer = 0.0f;
 
     // Start is called before the first frame update
@@ -61,7 +61,7 @@ public class Character_controller : MonoBehaviour
         isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.1f, whatisground);
         isonhead = Physics2D.OverlapCircle(headchecker.transform.position, 0.1f, whatisground);
         isonside = Physics2D.OverlapCircle(sidechecker_1.transform.position, 0.1f, whatisground) || Physics2D.OverlapCircle(sidechecker_2.transform.position, 0.1f, whatisground);
-        if (Input.GetKeyDown(KeyCode.Space) && isgrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && isgrounded == true && issliding == false && doublejump == false)
         {
             layerobject.AddForce(new Vector2(0f, jmpforce));
         }
@@ -90,7 +90,7 @@ public class Character_controller : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && issliding == false)
+        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && issliding == false && isonside == false)
         {
             isrot = true;
 
@@ -115,32 +115,50 @@ public class Character_controller : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKey(KeyCode.S) && isgrounded && issprint && targetTime > 0f)
+        if (Input.GetKey(KeyCode.S) && issprint && stamina > 0f && targetTime <= slidingTime && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
         {
+
             issliding = true;
-        }
-        if (issliding)
-        {
-            layerobject.velocity = new Vector2(movmentValueX, layerobject.velocity.y);
-            targetTime -= Time.deltaTime;
-            transform.localScale = slidesize;
         }
         else
         {
             // if player stopped holding the button replenish the sliding time
             issliding = false;
-            targetTime = slidingTime;
+            targetTime =targetTime + 0.05f;
             transform.localScale = basesize;
-
-
-
         }
-        if (targetTime == slidingTime)
+
+        if (issliding)
+        {
+            layerobject.AddForce(slidingSpeed);
+            targetTime = targetTime - 0.001f;
+            transform.localScale = slidesize;
+        }
+        
+        if (targetTime < 0f)
         {
             transform.localScale = basesize;
-            Debug.Log("shrink");
+            
+        }
+        if (targetTime > slidingTime)
+        {
+            targetTime = slidingTime;
+        }
+        
+        if (issliding && Input.GetKey(KeyCode.Space) && isgrounded)
+        {
+            doublejump = true;
+        }
+        else
+        {
+            doublejump = false;
         }
 
-
+        if (doublejump)
+        {
+            layerobject.AddForce(DJ_Hight);
+            issliding = false;
+            doublejump = false;
+        }
     }
 }

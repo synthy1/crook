@@ -723,6 +723,8 @@ MonoBehaviour:
     m_Bits: 8
   dead: 0
   stambar: {fileID: 219291975}
+  slidingSpeed: {x: 10, y: 0}
+  DJ_Hight: {x: 0, y: 35}
 --- !u!61 &1541445019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -994,11 +996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9133382710781196824, guid: 538432387a034bb42bca0b904a48ec64, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -270
+      value: -267
       objectReference: {fileID: 0}
     - target: {fileID: 9133382710781196824, guid: 538432387a034bb42bca0b904a48ec64, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 179.13
+      value: 290.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 538432387a034bb42bca0b904a48ec64, type: 3}
