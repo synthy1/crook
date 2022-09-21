@@ -57,7 +57,7 @@ public class Character_controller : MonoBehaviour
     {
         float movmentValueX = Input.GetAxis("Horizontal") * speed;
 
-        layerobject.velocity = new Vector2(movmentValueX, layerobject.velocity.y);
+        layerobject.AddForce(new Vector2(speed,0f));
         isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.1f, whatisground);
         isonhead = Physics2D.OverlapCircle(headchecker.transform.position, 0.1f, whatisground);
         isonside = Physics2D.OverlapCircle(sidechecker_1.transform.position, 0.1f, whatisground) || Physics2D.OverlapCircle(sidechecker_2.transform.position, 0.1f, whatisground);
