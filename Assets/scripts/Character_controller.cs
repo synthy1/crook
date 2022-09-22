@@ -33,6 +33,7 @@ public class Character_controller : MonoBehaviour
     public Stambar stambar;
     Vector3 basesize;
     Vector3 slidesize;
+    
     public Vector2 slidingSpeed = new Vector2(500f, 0);
     public Vector2 DJ_Hight = new Vector2(0f, 0.1f);
     private const float StaminaDecreasePerFrame = 50.0f;
@@ -57,7 +58,7 @@ public class Character_controller : MonoBehaviour
     {
         float movmentValueX = Input.GetAxis("Horizontal") * speed;
 
-        layerobject.AddForce(new Vector2(speed,0f));
+        layerobject.velocity = new Vector2(movmentValueX, layerobject.velocity.y);
         isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.1f, whatisground);
         isonhead = Physics2D.OverlapCircle(headchecker.transform.position, 0.1f, whatisground);
         isonside = Physics2D.OverlapCircle(sidechecker_1.transform.position, 0.1f, whatisground) || Physics2D.OverlapCircle(sidechecker_2.transform.position, 0.1f, whatisground);
@@ -112,7 +113,7 @@ public class Character_controller : MonoBehaviour
 
         if (isrot && isonhead || isrot && isonside)
         {
-            Destroy(gameObject);
+            //kill player
         }
 
         if (Input.GetKey(KeyCode.S) && issprint && stamina > 0f && targetTime <= slidingTime && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
@@ -124,14 +125,14 @@ public class Character_controller : MonoBehaviour
         {
             // if player stopped holding the button replenish the sliding time
             issliding = false;
-            targetTime =targetTime + 0.05f;
+            targetTime = targetTime + 0.001f;
             transform.localScale = basesize;
         }
 
         if (issliding)
         {
             layerobject.AddForce(slidingSpeed);
-            targetTime = targetTime - 0.001f;
+            targetTime = targetTime - 0.002f;
             transform.localScale = slidesize;
         }
         
@@ -160,5 +161,6 @@ public class Character_controller : MonoBehaviour
             issliding = false;
             doublejump = false;
         }
+        Debug.Log(targetTime);
     }
 }
