@@ -56,10 +56,10 @@ public class Character_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movmentValueX = Input.GetAxis("Horizontal") * speed;
+        float movmentValueX = speed;
 
         layerobject.velocity = new Vector2(movmentValueX, layerobject.velocity.y);
-        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.1f, whatisground);
+        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, 0.5f, whatisground);
         isonhead = Physics2D.OverlapCircle(headchecker.transform.position, 0.1f, whatisground);
         isonside = Physics2D.OverlapCircle(sidechecker_1.transform.position, 0.1f, whatisground) || Physics2D.OverlapCircle(sidechecker_2.transform.position, 0.1f, whatisground);
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded == true && issliding == false && doublejump == false)
