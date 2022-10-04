@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4255755750308559937}
   m_Layer: 3
   m_Name: Isometric Diamond
-  m_TagString: Ground
+  m_TagString: CleanUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 2275414671168695978}
   m_Layer: 3
   m_Name: Square
-  m_TagString: Ground
+  m_TagString: CleanUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
