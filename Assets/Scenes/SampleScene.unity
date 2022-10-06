@@ -545,9 +545,37 @@ PrefabInstance:
       propertyPath: slidingSpeed.x
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255395, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3107069363864611713, guid: f3d8cb2194c65aa438780627023e5fb6, type: 3}
+    - target: {fileID: 6485259092114255395, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255395, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255395, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -620,6 +648,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaffb9ae8abb2b743a3370e7b542a923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1507414134
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507414132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b642e225dd7d0a49ae948f9e8b9b262, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1507414137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6485259092114255398, guid: 9de0628a273e9af49a87e843cc5ea26c, type: 3}
