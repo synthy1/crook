@@ -7,6 +7,7 @@ public class Character_controller : MonoBehaviour
 {
     Rigidbody2D layerobject;
     public GameObject character;
+    public Animator anim;
 
     private float stamina = 100f;
     public float MaxStamina = 100.0f;
@@ -91,7 +92,7 @@ public class Character_controller : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && issliding == false && isonside == false)
+        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && isonside == false)
         {
             isrot = true;
             
@@ -113,7 +114,7 @@ public class Character_controller : MonoBehaviour
             //kill player
         }
 
-        if (Input.GetKey(KeyCode.S) && issprint && stamina != 0f && targetTime <= slidingTime && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
+        if (Input.GetKey(KeyCode.S) && issprint && targetTime <= slidingTime && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
         {
 
             issliding = true;
@@ -122,16 +123,14 @@ public class Character_controller : MonoBehaviour
         {
             // if player stopped holding the button replenish the sliding time
             issliding = false;
-            targetTime = targetTime - 0.001f;
-            transform.localScale = basesize;
         }
 
         if (issliding)
         {
-            Debug.Log("woooop");
+            
             layerobject.AddForce(slidingSpeed);
             targetTime = targetTime + 0.002f;
-            transform.localScale = slidesize;
+            
         }
         
         if (targetTime < 0f)
@@ -160,6 +159,7 @@ public class Character_controller : MonoBehaviour
             issliding = false;
             doublejump = false;
         }
-        
+        anim.SetBool("isgrounded", isgrounded);
+        anim.SetBool("issliding", issliding);
     }
 }
