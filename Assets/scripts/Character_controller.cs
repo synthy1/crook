@@ -32,8 +32,7 @@ public class Character_controller : MonoBehaviour
     bool doublejump = false;
     public bool dead = false;
     public Stambar stambar;
-    Vector3 basesize;
-    Vector3 slidesize;
+
     
     public Vector2 slidingSpeed = new Vector2(500f, 0);
     public Vector2 DJ_Hight = new Vector2(0f, 0.1f);
@@ -49,8 +48,7 @@ public class Character_controller : MonoBehaviour
         float startrot = character.transform.localRotation.z;
         stambar.setmaxstam(MaxStamina);
         speed = basespeed;
-        basesize = character.transform.localScale;
-        slidesize = new Vector3(character.transform.localScale.x, character.transform.localScale.y / 2f, character.transform.localScale.z);
+        
 
     }
 
@@ -114,7 +112,7 @@ public class Character_controller : MonoBehaviour
             //kill player
         }
 
-        if (Input.GetKey(KeyCode.S) && issprint && targetTime <= slidingTime && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
+        if (Input.GetKey(KeyCode.S) && issprint == true && targetTime <= 0f && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
         {
 
             issliding = true;
@@ -123,6 +121,7 @@ public class Character_controller : MonoBehaviour
         {
             // if player stopped holding the button replenish the sliding time
             issliding = false;
+            targetTime -= 0.05f;
         }
 
         if (issliding)
@@ -135,8 +134,9 @@ public class Character_controller : MonoBehaviour
         
         if (targetTime < 0f)
         {
-            transform.localScale = basesize;
+            
             issliding = false;
+            targetTime = 0f;
             
         }
         if (targetTime > slidingTime && issliding == true)
@@ -161,5 +161,6 @@ public class Character_controller : MonoBehaviour
         }
         anim.SetBool("isgrounded", isgrounded);
         anim.SetBool("issliding", issliding);
+        
     }
 }
