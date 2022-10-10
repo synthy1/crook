@@ -7,7 +7,7 @@ public class button_manger : MonoBehaviour
 {
     public void Loadscene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // opens next scene in the array
+        SceneManager.LoadScene(1); // opens next scene in the array
     }
     public void exit()
     {
@@ -15,6 +15,14 @@ public class button_manger : MonoBehaviour
     }
     public void credit()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2); // opens next scene in the array
+        SceneManager.LoadScene(2); // 
+    }
+    public void retry()
+    {
+        SceneManager.LoadScene(1); // 
+    }
+    public void menu()
+    {
+        SceneManager.LoadScene(0); // 
     }
 }
