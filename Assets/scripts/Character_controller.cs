@@ -64,6 +64,11 @@ public class Character_controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded == true && issliding == false && doublejump == false)
         {
             layerobject.AddForce(new Vector2(0f, jmpforce));
+            anim.SetBool("jump", true);
+        }
+        else
+        {
+            anim.SetBool("jump", false);
         }
 
         bool issprint = Input.GetKey(KeyCode.LeftShift);
