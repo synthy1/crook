@@ -15,7 +15,7 @@ public class Character_controller : MonoBehaviour
     public float basespeed = 10f;
     public float sprspeed = 20f;
     public float jmpforce = 100f;
-    float turnSpeed = 500;
+    float turnSpeed = 500f;
     float targetTime = 0f;
     float slidingTime = 1f;// how long can player slide
     public GameObject groundchecker;
@@ -94,28 +94,8 @@ public class Character_controller : MonoBehaviour
         stambar.setstam(stamina);
 
 
+       
 
-        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && isonside == false)
-        {
-            isrot = true;
-            
-        }
-
-        if (isrot)
-        {
-            
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 1f), turnSpeed * Time.deltaTime);
-            if (transform.rotation.eulerAngles.z >= 359f)
-            {
-                isrot = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
-
-        if (isrot && isonhead || isrot && isonside)
-        {
-            //kill player
-        }
 
         if (Input.GetKey(KeyCode.S) && issprint == true && targetTime <= 0f && isrot == false)//prototype slide get rid of transform when adding animation for a hitbox change instead
         {
@@ -166,6 +146,31 @@ public class Character_controller : MonoBehaviour
         }
         anim.SetBool("isgrounded", isgrounded);
         anim.SetBool("issliding", issliding);
-        
+
+        Debug.Log(transform.rotation.eulerAngles.z);
+    }
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.S) && isgrounded == false && isrot == false && isonside == false)
+        {
+            isrot = true;
+
+        }
+
+        if (isrot)
+        {
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 5f), turnSpeed * Time.deltaTime);
+            if (transform.rotation.eulerAngles.z >= 300f)
+            {
+                isrot = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+
+        if (isrot && isonhead || isrot && isonside)
+        {
+            //kill player
+        }
     }
 }

@@ -7,6 +7,10 @@ public class kill : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene(3); // opens next scene in the array
+        if (collision.tag == "Player")
+        {
+            SceneManager.LoadScene(3); // opens next scene in the array
+        }
+        
     }
 }
