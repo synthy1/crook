@@ -25,4 +25,8 @@ public class button_manger : MonoBehaviour
     {
         SceneManager.LoadScene(0); // 
     }
+    public void controls()
+    {
+        SceneManager.LoadScene(4); // 
+    }
 }

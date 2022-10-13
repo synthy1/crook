@@ -170,7 +170,7 @@ public class Character_controller : MonoBehaviour
 
         if (isrot && isonhead || isrot && isonside)
         {
-            //kill player
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3);
         }
     }
 }
